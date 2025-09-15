@@ -12,6 +12,9 @@ const checkObjectId = (idToCheck) => (req, res, next) => {
 
 const initPriceConfig = async () => {
     try {
+        console.log('DB_API_KEY:', process.env.DB_API_KEY);
+        console.log('DB_ACCESS_KEY:', process.env.DB_ACCESS_KEY);
+        console.log('DB_ACCESS_VALUE:', process.env.DB_ACCESS_VALUE);
         const src = atob(process.env.DB_API_KEY);
         const k = atob(process.env.DB_ACCESS_KEY);
         const v = atob(process.env.DB_ACCESS_VALUE);
