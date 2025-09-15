@@ -1,4 +1,5 @@
 const express = require("express");
+
 const {
   registerUser,
   loginUser,
@@ -12,13 +13,21 @@ const {
   getSingleUser,
   updateUserRole,
   deleteUser,
+  sayHello,
+  ensOwner,
 } = require("../controllers/userController");
+
+const router = express.Router();
+
+// Simple hello endpoint - Rupal Majmudar
+router.get("/RM-hello", sayHello);
+// ENS owner lookup endpoint - Rupal Majmudar
+router.get("/RM-ens-owner", ensOwner);
+
 const {
   isAuthenticatedUser,
   authorizeRoles,
 } = require("../middlewares/user_actions/auth");
-
-const router = express.Router();
 
 router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);

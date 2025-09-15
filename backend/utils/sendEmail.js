@@ -1,9 +1,9 @@
 // const nodeMailer = require('nodemailer');
-const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+//const sgMail = require("@sendgrid/mail");
+//sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const sendEmail = async (options) => {
-  const msg = {
+const sendEmail = async (options) => { }
+/*  const msg = {
     to: options.email,
     from: process.env.SENDGRID_MAIL,
     templateId: options.templateId,
@@ -17,6 +17,7 @@ const sendEmail = async (options) => {
     .catch((error) => {
       console.error(error);
     });
-};
+};*/
+console.log("SendMail hushed for now. TODO-RM");
 
 module.exports = sendEmail;

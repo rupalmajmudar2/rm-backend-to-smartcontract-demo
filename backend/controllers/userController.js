@@ -1,3 +1,32 @@
+// ENS owner lookup endpoint
+const { ethers } = require("ethers");
+
+exports.ensOwner = async (req, res) => {
+  try {
+    // You can use a public Ethereum provider, e.g. Infura or Alchemy
+    const provider = new ethers.JsonRpcProvider("https://mainnet.infura.io/v3/72610e27777e4e0c86b0bd656ce584a0"); //RmFloraProject from the old times!
+    const ensAbi = [
+      "function owner(bytes32 node) view returns (address)"
+    ];
+    const ensContract = new ethers.Contract(
+      "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+      ensAbi,
+      provider
+    );
+    const namehash = ethers.namehash("vitalik.eth");
+    const owner = await ensContract.owner(namehash);
+    console.log("Owner of vitalik.eth:", owner);
+    res.json({ owner });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch ENS owner" + err.message });
+  }
+};
+// Simple Hello endpoint
+exports.sayHello = (req, res) => {
+  console.log("Hello");
+  res.json({ message: "RM Hello from the server!" });
+};
 const User = require("../models/userModel");
 const asyncErrorHandler = require("../middlewares/helpers/asyncErrorHandler");
 const sendToken = require("../utils/sendToken");
